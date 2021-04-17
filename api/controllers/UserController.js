@@ -1,6 +1,6 @@
 const QueryService = require('./../../services/preparedQueryService');
 const mysql = require('mysql');
-const Parallelism = 4; 
+const Parallelism = 10; 
 const asyncBatch = require('async-batch').default;
 
 module.exports = {
@@ -78,9 +78,14 @@ module.exports = {
       processInBatch: async (req, res)=>{
         try{
 
-          let arr = [1,2,3,4,5];
-          await asyncBatch(arr, asyncMethod, Parallelism);
-           return res.status(200).send({ 'status': 200, 'message': 'processInBatch', data: {} });
+          let user_ids = [1,2,3,4,5,6,7,8,9,11,12,23,45,67,89,98,76,56,78,90,12,34];
+          let now = parseInt(Date.now()/1000);
+          let foo = 100;
+          let data = user_ids.map( user_id =>{
+            return [user_id,foo++,1,now,1, now ];
+          });
+          await asyncBatch(data, asyncWriteMethod, Parallelism);
+          return res.status(200).send({ 'status': 200, 'message': 'processInBatch', data: {} });
         } catch(e){
           console.log(e.message)
           return res.status(200).send({ 'status': 400, 'message': 'Something went wrong' });
@@ -89,8 +94,17 @@ module.exports = {
 };
 
 
-const asyncMethod = async (val) => { 
+const asyncReadMethod = async (val) => {
   let data = await QueryService.readQuery(`SELECT * FROM users WHERE id in (?)`, [val]);
+  data = JSON.stringify(data)
+  console.log(`data: ${data}`);
+
+};
+
+const asyncWriteMethod = async (val) => {
+  console.log("***",val);
+  let query = `INSERT INTO user_asset_map(user_id, asset_id, created_by, created_dt, updated_by, updated_dt) VALUES(?,?,?,?,?,?)`;
+  let data = await QueryService.writeQuery(query, val);
   data = JSON.stringify(data)
   console.log(`data: ${data}`);
 
