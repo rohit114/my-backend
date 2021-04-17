@@ -1,5 +1,7 @@
 const QueryService = require('./../../services/preparedQueryService');
 const mysql = require('mysql');
+const Parallelism = 4; 
+const asyncBatch = require('async-batch').default;
 
 module.exports = {
     getUser : async function(req, res) {
@@ -72,5 +74,24 @@ module.exports = {
           return res.status(200).send({ 'status': 400, 'message': 'Something went wrong' });
         }
 
-      }
+      },
+      processInBatch: async (req, res)=>{
+        try{
+
+          let arr = [1,2,3,4,5];
+          await asyncBatch(arr, asyncMethod, Parallelism);
+           return res.status(200).send({ 'status': 200, 'message': 'processInBatch', data: {} });
+        } catch(e){
+          console.log(e.message)
+          return res.status(200).send({ 'status': 400, 'message': 'Something went wrong' });
+        }
+      },
+};
+
+
+const asyncMethod = async (val) => { 
+  let data = await QueryService.readQuery(`SELECT * FROM users WHERE id in (?)`, [val]);
+  data = JSON.stringify(data)
+  console.log(`data: ${data}`);
+
 };

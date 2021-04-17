@@ -17,5 +17,9 @@ router.post('/bulk-insert', function(req, res, next) {
    User.bulkInsertDemo(req, res);
 });
 
+router.post('/batch-process', function(req, res, next) {
+   User.processInBatch(req, res);
+});
+
 
 module.exports = router;
