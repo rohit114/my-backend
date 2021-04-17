@@ -4,7 +4,11 @@ const pool = mysql.createPool(dbConfig.mysqlServer);
 const writePool = mysql.createPool(dbConfig.mysqlWriteServer);
 
 writePool.on('acquire', function(connection) {
-  console.debug('Connection Acquired...'); // -1.);
+  console.debug('Connection Acquired...');
+});
+
+writePool.on('release', function(connection) {
+  console.debug('Connection Released...');
 });
 
 module.exports = {

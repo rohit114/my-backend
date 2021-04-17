@@ -13,5 +13,9 @@ router.post('/create-user', function(req, res, next) {
    User.createUser(req, res);
 });
 
+router.post('/bulk-insert', function(req, res, next) {
+   User.bulkInsertDemo(req, res);
+});
+
 
 module.exports = router;
