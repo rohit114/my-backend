@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const User = require('./../api/controllers/UserController');
+const Niyo = require('./../api/controllers/NiyoController');
 
 /* Define your routes here */
 
@@ -17,5 +18,12 @@ router.post('/bulk-insert', function(req, res, next) {
    User.bulkInsertDemo(req, res);
 });
 
+router.post('/dump-data', function(req, res, next) {
+   Niyo.dumpDummyData(req, res);
+});
+//getUserTrxnHistory
+router.get('/get-user-trxn-by-month', function(req, res, next) {
+   Niyo.getUserTrxnHistory(req, res);
+});
 
 module.exports = router;

@@ -26,3 +26,19 @@ CREATE TABLE `user_asset_map` (
   FOREIGN KEY (user_d) REFERENCES users(id)
 );
 
+
+
+CREATE TABLE `user_transections` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) DEFAULT NULL,
+  `tid` int(10) DEFAULT NULL,
+  `amount` bigint(20) DEFAULT NULL,
+  `currency` varchar(10) DEFAULT NULL,
+  `trxn_type`  varchar(10) DEFAULT NULL,
+  `created_by` int DEFAULT NULL,
+  `created_dt` int DEFAULT NULL,
+  `updated_by` int DEFAULT NULL,
+  `updated_dt` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (user_d) REFERENCES users(id)
+);
