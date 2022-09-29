@@ -1,0 +1,21 @@
+const users = new Map()
+users.set(1, {name: "Rohit Kumarr", phone: "213-555-1234", address: "123 N 1st cross, 27th main"})
+users.set(2, {name: "Rahul Kumarr", phone: "213-555-1235", address: "124 S 1st Ave"})
+users.set(3, {name: "Neeraj Kumarr", phone: "213-555-1236", address: "125 S 1st cross"})
+users.set(4, {name: "Amit Kumarr", phone: "213-555-1237", address: "126 E 2nd cross"})
+
+const users2 = new Map()
+users2.set(11, {name: "Neha Kumari", phone: "213-555-1234", address: "123 N 1st cross, 27th main"})
+users2.set(12, {name: "Nidhi Soni", phone: "213-555-1235", address: "124 S 1st Ave"})
+users2.set(13, {name: "Aarushi Gupta", phone: "213-555-1236", address: "125 S 1st cross"})
+users2.set(14, {name: "Komal Mishra", phone: "213-555-1237", address: "126 E 2nd cross"})
+
+
+module.exports = {
+  getData1: ()=>{
+    return users
+  },
+  getData2: ()=>{
+    return users2
+  }
+}
