@@ -4,7 +4,7 @@ module.exports = {
         host: "localhost",
          user: "root",
          password: '',
-         database: "mydb_1",
+         database: "mydb",
          pool: true,
          connectionLimit: 50
     },
@@ -12,7 +12,7 @@ module.exports = {
         host: "localhost",
          user: "root",
          password: '',
-         database: "mydb_1",
+         database: "mydb",
          pool: true,
          connectionLimit: 150,
          acquireTimeout: 10000,

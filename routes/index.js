@@ -17,5 +17,13 @@ router.post('/bulk-insert', function(req, res, next) {
    User.bulkInsertDemo(req, res);
 });
 
+router.post('/bulk-insert-csv', function(req, res, next) {
+   User.bulkInsertDemoCSV(req, res);
+});
+
+router.get('/axios-demo', function(req, res, next) {
+   User.axiosDemo(req, res);
+});
+
 
 module.exports = router;
