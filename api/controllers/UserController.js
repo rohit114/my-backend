@@ -2,6 +2,7 @@ const fs = require('fs')
 const csv = require('csv-parser')
 const QueryService = require('./../../services/preparedQueryService');
 const mysql = require('mysql');
+const axios = require('axios');
 
 module.exports = {
     getUser : async function(req, res) {
@@ -96,6 +97,16 @@ module.exports = {
           return res.status(200).send({ 'status': 400, 'message': 'Something went wrong' });
         }
 
+      },
+      axiosDemo: async (req,res)=>{
+        try {
+            const response = await axios.get('https://api.github.com/users/mapbox');
+            return res.status(200).send({ 'status': 200, 'message': 'success', 'data': response.data });
+          } catch (error) {
+            console.error("ERROR ----->",error.message);
+            return res.status(400).send({ 'status': 400, 'message': 'Something went wrong' });
+          }
+       
       }
 };
 
