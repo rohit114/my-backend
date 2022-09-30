@@ -1,0 +1,15 @@
+<meta http-equiv="refresh" content="4">
+<h2><%= heading %></h2>
+<p><%= welcome %></p>
+
+<ul>Live Count: <b><%= newListItems.length %></b>
+    <% newListItems.forEach(function(item,index){ %>
+        <li> <%= item %> </li>
+    <% }) %>
+</ul>
+
+<ul>
+    <% newListItems.forEach(function(item,index){ %>
+        <i><li> <%= item %> </li></i>
+    <% }) %>
+</ul>
